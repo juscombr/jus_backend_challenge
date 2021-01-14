@@ -63,10 +63,12 @@ Não é obrigatório, mas irá somar mais pontos a sua entrega.
 ## Filtro de denúncias
 
   - Deve ser possível filtrar denúncias de uma data específica.
-  _Ex. Todas as denúncias enviadas no dia 13 de janeiro 2021_
+
+    >_Ex. Todas as denúncias enviadas no dia 13 de janeiro 2021_
 
   - Deve ser possível filtrar denuncias por um determinado período.
-  _Ex. Todas as denúncias enviadas entre 01 de janeiro 2021 até 13 de janeiro 2021_
+
+    >_Ex. Todas as denúncias enviadas entre 01 de janeiro 2021 até 13 de janeiro 2021_
 
 Para ambos os casos a API deve uma listagem com os mesmos atributos da lista de denúncias.
 
