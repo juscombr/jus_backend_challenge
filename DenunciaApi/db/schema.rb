@@ -10,16 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_16_232524) do
+ActiveRecord::Schema.define(version: 2021_01_16_234834) do
 
   create_table "denunciations", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.string "link"
-    t.integer "type"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "abuso"
+    t.integer "plagio"
+    t.integer "injuria"
+    t.integer "outro"
   end
 
   create_table "users", force: :cascade do |t|
