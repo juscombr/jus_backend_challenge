@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     validates :name, presence: true
 
-    enum type: {admin: 0, cliente: 1}
+
+    enum user_type: {admin: 0, client: 1}
 end
