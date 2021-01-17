@@ -16,4 +16,3 @@ describe "GET denunciations#index", type: :request do
       expect(response).to have_http_status(422)
     end
 end
-  

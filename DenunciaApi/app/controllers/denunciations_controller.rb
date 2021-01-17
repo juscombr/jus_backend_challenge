@@ -5,7 +5,26 @@ class DenunciationsController < ApplicationController
 
   # GET /denunciations
   def index
-    @denunciations = Denunciation.where(status: 1).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
+    @data_inicio = ""
+    @data_fim = ""
+    if params.has_key?(:data_inicio)
+      @data_inicio = Date.parse(params[:data_inicio])
+    end
+    if params.has_key?(:data_fim)
+      @data_fim = Date.parse(params[:data_fim])
+    end
+
+    if @data_inicio == "" and @data_fim == ""
+      @denunciations = Denunciation.where(status: 1).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
+
+    elsif @data_inicio and @data_fim == ""
+      
+      @denunciations = Denunciation.where(status: 1,created_at: @data_inicio.all_day).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
+    elsif @data_inicio != "" and @data_fim != ""
+      
+      @denunciations = Denunciation.where(status: 1,:created_at => @data_inicio.beginning_of_day..@data_fim.end_of_day).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
+    
+    end
 
     render json: @denunciations
   end
