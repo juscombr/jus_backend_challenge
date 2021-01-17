@@ -4,7 +4,7 @@ class DenunciationsController < ApplicationController
 
   # GET /denunciations
   def index
-    @denunciations = Denunciation.all
+    @denunciations = Denunciation.where(status: 1).select(:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
 
     render json: @denunciations
   end
