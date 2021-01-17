@@ -6,3 +6,10 @@ describe User do
       expect(user).to be_valid
   end 
 end
+
+describe "GET users#index", type: :request do
+  it "teste de userscontrollers" do
+    get '/users'
+    expect(response).to have_http_status(200)
+  end
+end
