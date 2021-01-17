@@ -5,7 +5,7 @@ class DenunciationsController < ApplicationController
 
   # GET /denunciations
   def index
-    @denunciations = Denunciation.where(status: 1).select(:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
+    @denunciations = Denunciation.where(status: 1).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
 
     render json: @denunciations
   end
@@ -60,9 +60,9 @@ class DenunciationsController < ApplicationController
     
  
       if @user.nil?
-        raise StandardError.new "Usuario não existe"
+        render json: { status: "error", message: "Usuario não existe" }, status: :unprocessable_entity
       elsif @user.user_type != 'admin'
-        raise StandardError.new "Usuario não é administrador"
+        render json: { status: "error", message: "Usuario não é administrador" }, status: :unprocessable_entity
       elsif @user.user_type == 'admin'
         
       end

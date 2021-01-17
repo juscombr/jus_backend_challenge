@@ -49,7 +49,7 @@ class UsersController < ApplicationController
       @user = User.where(name: user_params[:name]).exists?
 
       if @user
-        raise StandardError.new "Nome de usuario já existe"
+        render json: { status: "error", message: "Nome de usuário já existe no banco de dados" }, status: :unprocessable_entity
       else
 
       end
