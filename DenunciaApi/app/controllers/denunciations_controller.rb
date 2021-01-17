@@ -1,6 +1,7 @@
 class DenunciationsController < ApplicationController
   before_action :set_denunciation, only: [:show, :update, :destroy]
   before_action :auth, only: [:index, :update,:destroy,:show]
+  before_action :get_denunciation, only: [:show]
 
   # GET /denunciations
   def index
@@ -11,12 +12,15 @@ class DenunciationsController < ApplicationController
 
   # GET /denunciations/1
   def show
-    render json: @denunciation
+    render json: @denunciation.select(:id,:description,:link,:created_at,:user_id), include: {user: {
+      only: :name
+    }}
   end
 
   # POST /denunciations
   def create
     @denunciation = Denunciation.new(denunciation_params)
+    @denunciation.status = 1
 
     if @denunciation.save
       render json: @denunciation, status: :created, location: @denunciation
@@ -43,6 +47,10 @@ class DenunciationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_denunciation
       @denunciation = Denunciation.find(params[:id])
+    end
+
+    def get_denunciation
+      @denunciation = Denunciation.where(id: params[:id])
     end
 
     def auth
