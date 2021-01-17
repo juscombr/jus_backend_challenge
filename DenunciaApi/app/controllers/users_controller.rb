@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :search_user, only: [:create]
 
   # GET /users
   def index
@@ -42,6 +43,17 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def search_user
+      @user = User.where(name: user_params[:name]).exists?
+
+      if @user
+        raise StandardError.new "Nome de usuario já existe"
+      else
+
+      end
+    
     end
 
     # Only allow a trusted parameter "white list" through.
