@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_16_234834) do
+ActiveRecord::Schema.define(version: 2021_01_17_000819) do
 
   create_table "denunciations", force: :cascade do |t|
     t.string "title"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2021_01_16_234834) do
     t.integer "plagio"
     t.integer "injuria"
     t.integer "outro"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_denunciations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,4 +34,5 @@ ActiveRecord::Schema.define(version: 2021_01_16_234834) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "denunciations", "users"
 end

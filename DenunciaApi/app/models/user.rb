@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    belongs_to :denunciation
+
     validates :name, presence: true
 
 
