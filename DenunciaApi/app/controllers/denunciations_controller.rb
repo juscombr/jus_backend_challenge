@@ -40,7 +40,8 @@ class DenunciationsController < ApplicationController
 
   # DELETE /denunciations/1
   def destroy
-    @denunciation.destroy
+    @denunciation.status = 2
+    @denunciation.save
   end
 
   private
