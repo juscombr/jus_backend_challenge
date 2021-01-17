@@ -1,5 +1,6 @@
 class DenunciationsController < ApplicationController
   before_action :set_denunciation, only: [:show, :update, :destroy]
+  before_action :auth, only: [:index, :update,:destroy,:show]
 
   # GET /denunciations
   def index
@@ -42,6 +43,20 @@ class DenunciationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_denunciation
       @denunciation = Denunciation.find(params[:id])
+    end
+
+    def auth
+      @user = User.where(:name => params[:name_user]).select(:user_type).take
+ 
+    
+ 
+      if @user.nil?
+        raise StandardError.new "Usuario não existe"
+      elsif @user.user_type != 'admin'
+        raise StandardError.new "Usuario não é administrador"
+      elsif @user.user_type == 'admin'
+        
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
