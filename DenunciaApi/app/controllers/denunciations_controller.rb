@@ -1,6 +1,6 @@
 class DenunciationsController < ApplicationController
   before_action :set_denunciation, only: [:show, :update, :destroy]
-  before_action :auth, only: [:index, :update,:destroy,:show,:create]
+  before_action :auth, only: [:index, :update,:destroy,:show]
   before_action :get_denunciation, only: [:show]
 
   # GET /denunciations
@@ -22,7 +22,7 @@ class DenunciationsController < ApplicationController
       @denunciations = Denunciation.where(status: 1,:created_at => Time.parse(params[:data_inicio]).beginning_of_day..Time.parse(params[:data_inicio]).end_of_day).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
     elsif @data_inicio != "" and @data_fim != ""
       
-      @denunciations = Denunciation.where(status: 1,:created_at => @data_inicio.beginning_of_day..@data_fim.end_of_day).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
+      @denunciations = Denunciation.where(status: 1,:created_at => Time.parse(params[:data_inicio]).beginning_of_day..Time.parse(params[:data_fim]).end_of_day).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
     
     end
 
@@ -39,9 +39,8 @@ class DenunciationsController < ApplicationController
   # POST /denunciations
   def create
     @denunciation = Denunciation.new(denunciation_params)
-    @user = User.where("lower(name) = ?", params[:name_user].downcase).first
     @denunciation.status = 1
-    @denunciation.user_id = @user.id
+
 
     if @denunciation.save
       render json: @denunciation, status: :created, location: @denunciation
@@ -91,6 +90,6 @@ class DenunciationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def denunciation_params
-      params.require(:denunciation).permit(:title, :description, :link, :status,:plagio,:abuso,:injuria,:outro)
+      params.require(:denunciation).permit(:title, :description, :link, :status,:plagio,:abuso,:injuria,:outro,:user_id)
     end
 end
