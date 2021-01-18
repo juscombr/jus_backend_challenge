@@ -1,6 +1,6 @@
 class DenunciationsController < ApplicationController
   before_action :set_denunciation, only: [:show, :update, :destroy]
-  before_action :auth, only: [:index, :update,:destroy,:show]
+  before_action :auth, only: [:index, :update,:destroy,:show,:create]
   before_action :get_denunciation, only: [:show]
 
   # GET /denunciations
@@ -39,6 +39,9 @@ class DenunciationsController < ApplicationController
   # POST /denunciations
   def create
     @denunciation = Denunciation.new(denunciation_params)
+    @user = User.where("lower(name) = ?", params[:name_user].downcase).first
+    @denunciation.status = 1
+    @denunciation.user_id = @user.id
 
     if @denunciation.save
       render json: @denunciation, status: :created, location: @denunciation
