@@ -19,7 +19,7 @@ class DenunciationsController < ApplicationController
 
     elsif @data_inicio and @data_fim == ""
       
-      @denunciations = Denunciation.where(status: 1,created_at: @data_inicio.all_day).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
+      @denunciations = Denunciation.where(status: 1,:created_at => Time.parse(params[:data_inicio]).beginning_of_day..Time.parse(params[:data_inicio]).end_of_day).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
     elsif @data_inicio != "" and @data_fim != ""
       
       @denunciations = Denunciation.where(status: 1,:created_at => @data_inicio.beginning_of_day..@data_fim.end_of_day).select(:id,:title,:plagio,:abuso, :injuria, :outro,:created_at).last(10)
