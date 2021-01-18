@@ -1,24 +1,48 @@
-# README
+# API DE DENUNCIAS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Api de denuncia em um site
 
-Things you may want to cover:
+## Instruções para executar o projeto:
 
-* Ruby version
+### Ambiente
 
-* System dependencies
+* Ruby 2.5.1
 
-* Configuration
+* Rails 6.0.3
 
-* Database creation
+### Principais dependências usadas no projeto
 
-* Database initialization
+- ruby
+- rails
+- rspec
+- sqlite3
 
-* How to run the test suite
+### Foi usado a ferramenta POSTMAN para testes da api
 
-* Services (job queues, cache servers, search engines, etc.)
+### Criando banco de dados
 
-* Deployment instructions
+- `rails db:create`
+- `rails db:migrate`
 
-* ...
+### Executando projeto
+
+- `rails s`
+
+### Executando testes
+
+- `rspec <caminho_do_teste>`
+
+## Rotas da API
+
+| Verb | URI  Pattern | Controller#Action|
+|------|--------------|------------------|
+|POST  |  /users(.:format) | users#create |
+|GET  |  /denunciations/?name_user=<nome_do_usuario> | denunciations#index |
+|POST |  /denunciations(.:format) | denunciations#create|
+|GET  |  /denunciations/:id/?name_user=<nome_do_usuario>  | denunciations#show|
+|PUT   | /denunciations/:id/?name_user=<nome_do_usuario>  | denunciations#update|
+|DELETE| /denunciations/:id/?name_user=<nome_do_usuario> | denunciations#destroy|
+|GET  |  /denunciations/?name_user=<nome_do_usuario>&data_inicio=<data_dia> | denunciations#index |
+|GET  |  /denunciations/?name_user=<nome_do_usuario>&data_inicio=<data_inicio>&data_fim=<data_do_fim> | denunciations#index |
+
+- obs: As datas devem ser colocadas no formato YY:MM:DD
