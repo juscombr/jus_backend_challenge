@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     end
 
     def search_user
-      @user = User.where(name: user_params[:name]).exists?
+      @user = User.where("lower(name) = ?", user_params[:name].downcase).exists?
 
       if @user
         render json: { status: "error", message: "Nome de usuário já existe no banco de dados" }, status: :unprocessable_entity

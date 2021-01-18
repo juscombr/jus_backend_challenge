@@ -39,7 +39,6 @@ class DenunciationsController < ApplicationController
   # POST /denunciations
   def create
     @denunciation = Denunciation.new(denunciation_params)
-    @denunciation.status = 1
 
     if @denunciation.save
       render json: @denunciation, status: :created, location: @denunciation
@@ -89,6 +88,6 @@ class DenunciationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def denunciation_params
-      params.require(:denunciation).permit(:title, :description, :link, :status,:plagio,:abuso,:injuria,:outro,:user_id)
+      params.require(:denunciation).permit(:title, :description, :link, :status,:plagio,:abuso,:injuria,:outro)
     end
 end
