@@ -78,14 +78,11 @@ class DenunciationsController < ApplicationController
       @user = User.where(:name => params[:name_user]).select(:user_type).take
  
     
- 
-      if @user.nil?
-        render json: { status: "error", message: "Usuario não existe" }, status: :unprocessable_entity
-      elsif @user.user_type != 'admin'
-        render json: { status: "error", message: "Usuario não é administrador" }, status: :unprocessable_entity
-      elsif @user.user_type == 'admin'
+      return render json: { status: "error", message: "Usuario não existe" }, status: :unprocessable_entity if @user.nil?
+      return render json: { status: "error", message: "Usuario não é administrador" }, status: :unprocessable_entity if @user.user_type != 'admin'
+      return @user if @user.user_type == 'admin'
         
-      end
+      
     end
 
     # Only allow a trusted parameter "white list" through.
