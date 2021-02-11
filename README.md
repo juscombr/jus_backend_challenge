@@ -22,13 +22,13 @@ A API de denúncias deve possuir as operações básicas: criar, exibir e atuali
 
 ## Listagem de denúncias — Administração
 
-A listagem de denúncias deve retornar apenas 10 registro por padrão, caso não seja especificada uma quantidade diferente e é preciso conter os seguintes dados:
+A listagem de denúncias deve retornar apenas 10 registros por padrão, caso não seja especificada uma quantidade diferente e é preciso conter os seguintes dados:
   - Resumo (título) sobre a denúncia;
-  - Tipo:
+  - Tipo da denúncia ex.
     - Abuso;
     - Plágio;
-    - _etc_ (No mínimo três tipos por padrão);
     - Outro;
+    - ...
   - Data e hora que a denúncia foi envida.
 
 > Nota: Toda nomenclatura usada para definir os campos (colunas), como: descrição, tipo, resumo, _etc_. São apenas sugestões, você pode nomear como achar melhor, porém, deve seguir com a proposta apresentada.
@@ -48,7 +48,7 @@ A listagem deve mostrar apenas denúncias que ainda não foram lidas.
 ## Detalhes técnicos
 
   - A aplicação deve ser escrita em Ruby, Sinatra, Ruby on Rails ou Hanami;
-  - É esperado que a aplicação contenha testes, você é livre para escolher a abordagem de teste que quiser;
+  - É esperado que a aplicação contenha testes, você é livre para escolher a abordagem(gem) de teste que quiser;
   - É preciso ter um README com instruções claras de uso;
   - Sinta-se a vontade para usar qualquer recurso que possa ajuda-lo.
 
