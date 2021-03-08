@@ -1,4 +1,4 @@
-# [Jus.com.br](https://jus.com.br) - Teste técnico para desenvolvedor back-end júnior
+# [Jus.com.br](https://jus.com.br) - Teste técnico para desenvolvedor back-end
 
 Este teste faz parte do nosso processo de contratação no Jus para as vagas de back-end. Deve demorar entre 2 e 4 dias, dependendo da sua experiência. Espero que você se divirta tanto quanto nós desenvolvendo este teste!
 
